@@ -1,0 +1,17 @@
+# This file contains HTTP requests for testing the server.
+
+GET http://localhost:8000
+
+###
+
+POST http://localhost:8000
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "age": 30
+}
+
+###
+
+DELETE  http://localhost:8000
