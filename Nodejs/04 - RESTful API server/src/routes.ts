@@ -1,8 +1,9 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { users } from './vars.ts';
 import type { User } from './vars.ts';
+import { parseRequestBody } from './utils/bodyParser.ts';
 
-export function handleRoutes(req: IncomingMessage, res: ServerResponse) {
+export async function handleRoutes(req: IncomingMessage, res: ServerResponse) {
     if (req.method === 'GET' && req.url === '/users') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         return res.end(JSON.stringify({
@@ -11,28 +12,38 @@ export function handleRoutes(req: IncomingMessage, res: ServerResponse) {
     }
 
     if (req.method === 'POST' && req.url === '/users') {
-        let body = ''; // Initialize an empty string to accumulate the request body
+        //let body = ''; // Initialize an empty string to accumulate the request body
 
-        // Listen for data events to receive the request body
-        req.on('data', chunk => {
-            body += chunk; // Append each chunk of data to the body
-        });
+        // // Listen for data events to receive the request body
+        // req.on('data', chunk => {
+        //     body += chunk; // Append each chunk of data to the body
+        // });
 
-        // Listen for the end event to know when the entire body has been received
-        req.on('end', () => {
-            console.log('Received POST data:', body); // Log the received data (optional)
-            let user = JSON.parse(body) as User; // Parse the received data as JSON and cast it to the User type
+        // // Listen for the end event to know when the entire body has been received
+        // req.on('end', () => {
+        //     console.log('Received POST data:', body); // Log the received data (optional)
+        //     let user = JSON.parse(body) as User; // Parse the received data as JSON and cast it to the User type
 
-            users.push(user); // Add the received data to the users array
+        //     users.push(user); // Add the received data to the users array
 
-            res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.end(JSON.stringify({
-                message: `User ${user.name} added successfully!`,
-                totalUsers: users.length,
-            }));
-        });
+        //     res.writeHead(200, { 'Content-Type': 'application/json' });
+        //     res.end(JSON.stringify({
+        //         message: `User ${user.name} added successfully!`,
+        //         totalUsers: users.length,
+        //     }));
+        // });
 
-        return; // exit the function to wait for the 'end' event before sending a response
+        // return; // exit the function to wait for the 'end' event before sending a response
+
+
+        let body = await parseRequestBody(req); // Use the parseRequestBody function to get the request body as a JavaScript object 
+        let user = body as User; // Cast the parsed body to the User type
+        users.push(user); // Add the received data to the users array
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        return res.end(JSON.stringify({
+            message: `User ${user.name} added successfully!`,
+            totalUsers: users.length,
+        }));
     }
 
     if (req.method === 'PUT' && req.url?.includes('/users/')) {
@@ -75,7 +86,7 @@ export function handleRoutes(req: IncomingMessage, res: ServerResponse) {
         const id = Number(parts[parts.length - 1]); // Extract the user ID from the URL
 
         // Find the index of the user with the specified ID
-        const userIndex = users.findIndex(user => user.id === id);  
+        const userIndex = users.findIndex(user => user.id === id);
 
         if (userIndex === -1) {
             res.writeHead(404, { 'Content-Type': 'application/json' });
@@ -90,6 +101,4 @@ export function handleRoutes(req: IncomingMessage, res: ServerResponse) {
             totalUsers: users.length,
         }));
     }
-
-
 }

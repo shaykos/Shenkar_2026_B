@@ -1,0 +1,29 @@
+# This file contains HTTP requests for testing the server.
+
+GET http://localhost:8000/api/users
+
+###
+
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+    "id":1,
+    "name": "John Doe",
+    "age": 30
+}
+
+###
+
+PUT  http://localhost:8000/api/users/1
+Content-Type: application/json
+
+{
+    "id":1,
+    "name": "John Doe",
+    "age": 32
+}
+
+###
+
+DELETE  http://localhost:8000/api/users/1
