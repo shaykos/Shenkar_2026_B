@@ -23,8 +23,8 @@ db.users.find({ status: { $ne: 'A' } });
 // db.users.find(q);
 
 // כל היוזרים שגדולים מ-20 והסטטוס שלהם בהרכח A
-// let q = { age: { $gt: 19 }, status: 'A' }
-// db.users.find(q);
+let q = { age: { $gt: 19 }, status: 'A' }
+db.users.find(q);
 
 //רשימת כל היוזרים שלא רשמו סטטוס
 db.users.find({ status: { $exists: false } });
@@ -42,4 +42,4 @@ let q = {
       {status: 'A'}  
     ]
 }
-db.users.find()
+db.users.find(q)
