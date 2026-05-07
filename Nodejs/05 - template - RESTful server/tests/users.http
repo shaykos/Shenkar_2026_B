@@ -19,11 +19,11 @@ PUT  http://localhost:8000/api/users/1
 Content-Type: application/json
 
 {
-    "id":1,
+    "id":10,
     "name": "John Doe",
     "age": 32
 }
 
 ###
 
-DELETE  http://localhost:8000/api/users/1
+DELETE  http://localhost:8000/api/users/10
