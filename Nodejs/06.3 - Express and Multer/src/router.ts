@@ -1,11 +1,8 @@
 import { Router } from 'express';
-import { upload } from './middlewares/files.ts';
-import { buildSuccessResponse } from './utils/response.builder.ts';
+import cloudRouter from './cloud/cloud.router.ts';
 
 const router = Router();
 
-router.post('/upload', upload.single('file'), (req, res) => {
-    res.status(201).json(buildSuccessResponse('file uploaded'));
-});
+router.use('/upload', cloudRouter);
 
 export default router;
