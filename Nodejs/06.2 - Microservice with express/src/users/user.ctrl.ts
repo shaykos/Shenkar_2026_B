@@ -5,7 +5,6 @@ import { buildErrorResponse, buildSuccessResponse } from '../utils/response.buil
 export async function registerUser(req: Request, res: Response) {
     try {
         console.log('body --> ', req.body);
-        console.log('req', req);
         let info = req.body;
         let newUser = await createUser(info);
 
@@ -27,10 +26,13 @@ export async function allUsers(req: Request, res: Response) {
 
 export async function findUser(req: Request, res: Response) {
     try {
-        console.log('params --> ', req.params);
         let { id } = req.params;
         let user = await getUser(id as string);
-        return res.status(200).json(buildSuccessResponse(user));
+
+        if (user)
+            return res.status(200).json(buildSuccessResponse(user));
+
+        return res.status(404).json(buildErrorResponse("User not found"));
     } catch (error) {
         return res.status(500).json(buildErrorResponse(error));
     }

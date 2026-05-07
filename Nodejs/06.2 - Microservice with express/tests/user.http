@@ -4,9 +4,16 @@ GET http://localhost:8055/api/user
 
 ### register user
 POST http://localhost:8055/api/user/register
+Content-Type: application/json
 
 {
     "email": "kuku@gmail.com",
     "name": "kuku",
     "password": "1234"
 }
+
+### get specific user
+GET http://localhost:8055/api/user/37462371-6b17-4cb2-8a05-1046b93a8b64
+
+### get specific user
+GET http://localhost:8055/api/user/99b99b1c-d4f2-4b54-a859-2098fd228208
