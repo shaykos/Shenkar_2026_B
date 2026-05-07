@@ -1,0 +1,12 @@
+
+### get all users
+GET http://localhost:8055/api/user
+
+### register user
+POST http://localhost:8055/api/user/register
+
+{
+    "email": "kuku@gmail.com",
+    "name": "kuku",
+    "password": "1234"
+}
