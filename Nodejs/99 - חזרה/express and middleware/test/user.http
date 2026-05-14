@@ -1,0 +1,15 @@
+@PORT=8800
+@HOST=localhost
+
+### get all users
+GET http://{{HOST}}:{{PORT}}/api/users
+
+### regiser new user
+POST http://{{HOST}}:{{PORT}}/api/users
+Content-Type: application/json
+
+{
+    "name": "momo",
+    "password": "1122",
+    "email": "momo@gmail.com"
+}
