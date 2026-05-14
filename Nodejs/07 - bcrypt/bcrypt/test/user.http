@@ -1,0 +1,29 @@
+@PORT=8800
+@HOST=localhost
+
+### get all users
+GET http://{{HOST}}:{{PORT}}/api/users
+
+### regiser new user
+POST http://{{HOST}}:{{PORT}}/api/users
+Content-Type: application/json
+
+{
+    "name": "momo",
+    "password": "1122",
+    "email": "momo@gmail.com"
+}
+
+### login user
+POST http://{{HOST}}:{{PORT}}/api/users/login
+Content-Type: application/json
+
+{
+    "password": "1122",
+    "email": "momo@gmail.com"
+}
+
+
+### admin test - protected route
+GET  http://{{HOST}}:{{PORT}}/api/admin
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibW9tbyIsImVtYWlsIjoibW9tb0BnbWFpbC5jb20iLCJpZCI6Ijc2ZjJkNmMyLWJjM2UtNGNlOC04MDJkLWRiOTM1NzY0Njc0MSIsImNyZWF0ZWRBdCI6IjIwMjYtMDUtMTRUMTA6MDY6MzAuMDkwWiIsImlhdCI6MTc3ODc1MzE5NCwiZXhwIjoxNzc4NzUzMjI0fQ.HL2ax0C5XqynXMCTWOyvoApSRenDuITI44T66VWdLnM
