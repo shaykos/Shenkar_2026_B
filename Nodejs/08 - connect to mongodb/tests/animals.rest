@@ -1,0 +1,11 @@
+@BaseURL = http://localhost:8888
+
+POST {{BaseURL}}/api/animals/add
+Content-Type: application/json
+
+{
+  "name": "Lion",
+  "species": "Panthera leo",
+  "age": 5,
+  "habitat": "Savanna"
+}
