@@ -9,3 +9,23 @@ Content-Type: application/json
   "age": 5,
   "habitat": "Savanna"
 }
+
+### get all animals
+GET {{BaseURL}}/api/animals/list
+
+### get animal by id
+GET {{BaseURL}}/api/animals/6a1804a14f137cadc053cd2a
+
+### update animal by id
+PUT {{BaseURL}}/api/animals/update/6a1802870258f3499b8759dd
+Content-Type: application/json
+
+{
+  "name": "African Lion",
+  "species": "Panthera leo",
+  "age": 6,
+  "habitat": "Ramat Gan Safari"
+}
+
+### delete animal by id
+DELETE {{BaseURL}}/api/animals/delete/6a1802870258f3499b8759dd
