@@ -7,7 +7,7 @@ export interface Animal {
   age: number;
   habitat: string;
   description?: string;
-  imageUrl?: string;
+  imageUrl: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
