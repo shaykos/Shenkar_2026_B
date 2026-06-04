@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8888;
 const app = express();
 
 app.use(cors({
-    origin: '*', // אפשר לכל המקורות לגשת ל-API
+    origin: ['https://our-zoo-app.onrender.com/'], // אפשר לכל המקורות לגשת ל-API
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // אפשר את כל שיטות ה-HTTP הנפוצות
     //allowedHeaders: ['Content-Type', 'Authorization'] // אפשר כותרות אלו בבקשות
 }));
