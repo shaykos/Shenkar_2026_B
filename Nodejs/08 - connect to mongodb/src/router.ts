@@ -1,6 +1,6 @@
 import {Router} from 'express';
-import cloudRouter from './features/cloud/cloud.router.ts';
-import animalRouter from './features/animals/animals.router.ts';
+import cloudRouter from './features/cloud/cloud.router.js';
+import animalRouter from './features/animals/animals.router.js';
 
 const router = Router();
 

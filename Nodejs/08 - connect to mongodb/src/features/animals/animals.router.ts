@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { addAnimal, listAnimals, getAnimalById, updateAnimal, deleteAnimal } from './animals.ctrl.ts';
-import { saveToMemory } from '../../middlewares/files.ts';
+import { addAnimal, listAnimals, getAnimalById, updateAnimal, deleteAnimal } from './animals.ctrl.js';
+import { saveToMemory } from '../../middlewares/files.js';
 
 const animalRouter = Router();
 

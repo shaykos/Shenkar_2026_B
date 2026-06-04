@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { buildErrorResponse, buildSuccessResponse } from '../../utils/response.builder.ts';
+import { buildErrorResponse, buildSuccessResponse } from '../../utils/response.builder.js';
 import { v2 as cloudinary } from 'cloudinary';
 
 export async function saveFileLocally(req: Request, res: Response) {

@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { saveFileLocally, uploadToCloudinary } from './cloud.ctrl.ts';
-import { saveToMemory, saveToStorage } from '../../middlewares/files.ts';
+import { saveFileLocally, uploadToCloudinary } from './cloud.ctrl.js';
+import { saveToMemory, saveToStorage } from '../../middlewares/files.js';
 
 //מייצרים את הראוטר
 const cloudRouter = Router();

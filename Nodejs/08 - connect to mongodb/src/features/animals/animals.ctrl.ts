@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
-import { buildErrorResponse, buildSuccessResponse } from '../../utils/response.builder.ts';
+import { buildErrorResponse, buildSuccessResponse } from '../../utils/response.builder.js';
 import type { Animal } from './animals.types.ts';
-import * as animalModel from './animals.model.ts';
+import * as animalModel from './animals.model.js';
 import { v2 as cloudinary } from 'cloudinary';
 
 export async function addAnimal(req: Request, res: Response) {

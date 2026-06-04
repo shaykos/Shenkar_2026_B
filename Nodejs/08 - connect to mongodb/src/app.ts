@@ -1,7 +1,7 @@
 import { join } from 'path';
 import express from 'express';
-import router from './router.ts';
-import dbServices, { gracefulShutdown } from './utils/db.services.ts';
+import router from './router.js';
+import dbServices, { gracefulShutdown } from './utils/db.services.js';
 
 process.loadEnvFile(join(process.cwd(), '.env'));
 //console.log('Environment variables loaded successfully.', join(process.cwd(), '.env'));

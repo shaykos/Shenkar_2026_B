@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb';
-import dbServices from '../../utils/db.services.ts';
+import dbServices from '../../utils/db.services.js';
 import type { Animal } from './animals.types.ts';
 
 export async function addAnimalToDB(animal: Animal) {
