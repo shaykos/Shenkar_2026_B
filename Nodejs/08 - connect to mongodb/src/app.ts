@@ -4,6 +4,7 @@ import router from './router.js';
 import dbServices, { gracefulShutdown } from './utils/db.services.js';
 
 process.loadEnvFile(join(process.cwd(), '.env'));
+console.log('Environment variables loaded successfully.' , join(process.cwd(), '.env'));
 //console.log('Environment variables loaded successfully.', join(process.cwd(), '.env'));
 
 const PORT = process.env.PORT || 8888;
