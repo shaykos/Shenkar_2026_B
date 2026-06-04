@@ -1,11 +1,9 @@
-import { join } from 'path';
 import express from 'express';
 import router from './router.js';
 import dbServices, { gracefulShutdown } from './utils/db.services.js';
+import dotenv from 'dotenv';
 
-process.loadEnvFile(join(process.cwd(), '.env'));
-console.log('Environment variables loaded successfully.' , join(process.cwd(), '.env'));
-//console.log('Environment variables loaded successfully.', join(process.cwd(), '.env'));
+dotenv.config();
 
 const PORT = process.env.PORT || 8888;
 
