@@ -4,10 +4,10 @@ POST {{BaseURL}}/api/animals/add
 Content-Type: application/json
 
 {
-  "name": "Lion",
-  "species": "Panthera leo",
+  "name": "Bagira",
+  "species": "Panther",
   "age": 5,
-  "habitat": "Savanna"
+  "habitat": "Jungle"
 }
 
 ### get all animals

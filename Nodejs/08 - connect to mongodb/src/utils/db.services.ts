@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, type Filter } from 'mongodb';
 
 class DBServices {
     private client: MongoClient;
@@ -34,19 +34,19 @@ class DBServices {
         }
     }
 
-    getDocuments(collectionName: string, filter: object = {}, projection: object = {}) {
+    getDocuments(collectionName: string, filter: Filter<any> = {}, projection: object = {}) {
         return this.client.db(this.dbName).collection(collectionName).find(filter, { projection }).toArray();
     }
 
-    insertDocument(collectionName: string, document: object) {
+    insertDocument(collectionName: string, document: Record<string, any>) {
         return this.client.db(this.dbName).collection(collectionName).insertOne(document);
     }
 
-    updateDocument(collectionName: string, filter: object, update: object) {
+    updateDocument(collectionName: string, filter: Filter<any>, update: Record<string, any>) {
         return this.client.db(this.dbName).collection(collectionName).updateOne(filter, update);
     }
 
-    deleteDocument(collectionName: string, filter: object) {
+    deleteDocument(collectionName: string, filter: Filter<any>) {
         return this.client.db(this.dbName).collection(collectionName).deleteOne(filter);
     }
 }
