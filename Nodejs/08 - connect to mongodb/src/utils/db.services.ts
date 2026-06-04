@@ -1,8 +1,9 @@
 import { MongoClient } from 'mongodb';
 
-export default class DBService {
+class DBServices {
     private client: MongoClient;
     private dbName: string;
+    private static instance: DBServices | null = null;
 
     constructor() {
         this.client = new MongoClient(process.env.MONGODB_URI || 'mongodb://localhost:27017');
@@ -11,8 +12,11 @@ export default class DBService {
 
     async connect() {
         try {
-            await this.client.connect();
-            console.log('Connected to MongoDB');
+            if(DBServices.instance == null) {
+                await this.client.connect();
+                console.log('Connected to MongoDB');
+                DBServices.instance = this;
+            }
         } catch (error) {
             console.error('Error connecting to MongoDB:', error);
             throw error;
@@ -22,6 +26,7 @@ export default class DBService {
     async disconnect() {
         try {
             await this.client.close();
+            DBServices.instance = null;
             console.log('Disconnected from MongoDB');
         } catch (error) {
             console.error('Error disconnecting from MongoDB:', error);
@@ -45,3 +50,24 @@ export default class DBService {
         return this.client.db(this.dbName).collection(collectionName).deleteOne(filter);
     }
 }
+
+export async function gracefulShutdown(signal: string) {
+    console.log(`\nReceived ${signal}. Starting graceful shutdown...`);
+    
+    try {
+        // סגירת החיבור ל-MongoDB
+        await dbServices.disconnect();
+        console.log('Database connection closed successfully.');
+        
+        // יציאה נקייה מהתהליך
+        process.exit(0);
+    } catch (error) {
+        console.error('Error during shutdown:', error);
+        process.exit(1);
+    }
+}
+
+const dbServices = new DBServices();
+
+export default dbServices;
+

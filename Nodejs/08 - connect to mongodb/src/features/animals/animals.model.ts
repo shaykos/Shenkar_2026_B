@@ -1,30 +1,21 @@
 import { ObjectId } from 'mongodb';
-import DBService from '../../utils/db.services.ts';
+import dbServices from '../../utils/db.services.ts';
 import type { Animal } from './animals.types.ts';
 
 export async function addAnimalToDB(animal: Animal) {
-    const dbService = new DBService();
-    await dbService.connect();
-    const result = await dbService.insertDocument('animals', animal);
-    await dbService.disconnect();
+    const result = await dbServices.insertDocument('animals', animal);
     return result;
 }
 
 export async function getAllAnimalsFromDB() {
-    const dbService = new DBService();
-    await dbService.connect();
-    const result = await dbService.getDocuments('animals');
-    await dbService.disconnect();
+    const result = await dbServices.getDocuments('animals');
     return result;
 }
 
 export async function getAnimalByIdFromDB(id: string) {
     let filter = { _id: new ObjectId(id) };
 
-    const dbService = new DBService();
-    await dbService.connect();
-    const result = await dbService.getDocuments('animals', filter);
-    await dbService.disconnect();
+    const result = await dbServices.getDocuments('animals', filter);
     return result[0];
 }
 
@@ -32,18 +23,12 @@ export async function updateAnimalInDB(id: string, animalData: Partial<Animal>) 
     let filter = { _id: new ObjectId(id) };
     let update = { $set: animalData };
 
-    const dbService = new DBService();
-    await dbService.connect();
-    const result = await dbService.updateDocument('animals', filter, update);
-    await dbService.disconnect();
+    const result = await dbServices.updateDocument('animals', filter, update);
     return result;
 }
 
 export async function deleteAnimalFromDB(id: string) {
     let filter = { _id: new ObjectId(id) };
-    const dbService = new DBService();
-    await dbService.connect();
-    const result = await dbService.deleteDocument('animals', filter);
-    await dbService.disconnect();
+    const result = await dbServices.deleteDocument('animals', filter);
     return result;
 }
